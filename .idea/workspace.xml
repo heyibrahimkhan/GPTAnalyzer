@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e84b2aa7-da65-4739-b893-a24a4b087d47" name="Default" comment="File Renamed">
+    <list default="true" id="e84b2aa7-da65-4739-b893-a24a4b087d47" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mGPT.py" afterPath="$PROJECT_DIR$/mGPT.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,8 +29,8 @@
       <file leaf-file-name="mGPT.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mGPT.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="287" column="75" lean-forward="true" selection-start-line="287" selection-start-column="75" selection-end-line="287" selection-end-column="75" />
+            <state relative-caret-position="255">
+              <caret line="292" column="21" lean-forward="true" selection-start-line="292" selection-start-column="21" selection-end-line="292" selection-end-column="21" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -307,7 +306,14 @@
       <option name="project" value="LOCAL" />
       <updated>1495738481830</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="CRC32 for Partition Entries Array can now be calculated">
+      <created>1495753553117</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1495753553117</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -341,7 +347,8 @@
     <MESSAGE value="Done with GPT Reading" />
     <MESSAGE value="Works from command line" />
     <MESSAGE value="File Renamed" />
-    <option name="LAST_COMMIT_MESSAGE" value="File Renamed" />
+    <MESSAGE value="CRC32 for Partition Entries Array can now be calculated" />
+    <option name="LAST_COMMIT_MESSAGE" value="CRC32 for Partition Entries Array can now be calculated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -480,8 +487,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mGPT.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="287" column="75" lean-forward="true" selection-start-line="287" selection-start-column="75" selection-end-line="287" selection-end-column="75" />
+        <state relative-caret-position="255">
+          <caret line="292" column="21" lean-forward="true" selection-start-line="292" selection-start-column="21" selection-end-line="292" selection-end-column="21" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
