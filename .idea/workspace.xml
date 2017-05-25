@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e84b2aa7-da65-4739-b893-a24a4b087d47" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mMBR.py" afterPath="$PROJECT_DIR$/mMBR.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.py" afterPath="$PROJECT_DIR$/test.py" />
@@ -32,8 +31,8 @@
       <file leaf-file-name="mMBR.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mMBR.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="297" column="21" lean-forward="true" selection-start-line="297" selection-start-column="21" selection-end-line="297" selection-end-column="21" />
+            <state relative-caret-position="119">
+              <caret line="306" column="40" lean-forward="true" selection-start-line="306" selection-start-column="40" selection-end-line="306" selection-end-column="40" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -44,8 +43,8 @@
       <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="124" column="21" lean-forward="false" selection-start-line="124" selection-start-column="21" selection-end-line="124" selection-end-column="21" />
+            <state relative-caret-position="225">
+              <caret line="139" column="0" lean-forward="false" selection-start-line="139" selection-start-column="0" selection-end-line="145" selection-end-column="20" />
               <folding>
                 <element signature="e#18#27#0" expanded="true" />
               </folding>
@@ -70,6 +69,11 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Ibrahim Ali Khan &lt;heyibrahimkhan@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -281,6 +285,14 @@
       <option name="presentableId" value="Default" />
       <updated>1495229719113</updated>
     </task>
+    <task id="LOCAL-00001" summary="Done with GPT Reading">
+      <created>1495730661323</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1495730661323</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -309,6 +321,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Done with GPT Reading" />
+    <option name="LAST_COMMIT_MESSAGE" value="Done with GPT Reading" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -407,8 +423,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="124" column="21" lean-forward="false" selection-start-line="124" selection-start-column="21" selection-end-line="124" selection-end-column="21" />
+        <state relative-caret-position="225">
+          <caret line="139" column="0" lean-forward="false" selection-start-line="139" selection-start-column="0" selection-end-line="145" selection-end-column="20" />
           <folding>
             <element signature="e#18#27#0" expanded="true" />
           </folding>
@@ -417,8 +433,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mMBR.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="297" column="21" lean-forward="true" selection-start-line="297" selection-start-column="21" selection-end-line="297" selection-end-column="21" />
+        <state relative-caret-position="119">
+          <caret line="306" column="40" lean-forward="true" selection-start-line="306" selection-start-column="40" selection-end-line="306" selection-end-column="40" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>

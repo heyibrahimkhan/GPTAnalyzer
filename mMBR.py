@@ -1,6 +1,6 @@
 import binascii
 import re
-
+import sys
 
 # Required Functions, if any
 
@@ -25,7 +25,7 @@ def littleEndian(param):
 # Partition Array Entry
 def pae(param):
     if len(param) == sizeSinglePartEnt and re.fullmatch(r'0*', param) is None:
-        print('param = ' + param)
+        # print('param = ' + param)
         fLBA = int(littleEndian(param[64:80]), 16)
         lLBA = int(littleEndian(param[80:96]), 16)
         tSize = (((((lLBA - fLBA) + 1) * 512) // 1024) // 1024)
@@ -138,8 +138,19 @@ def partitionEntry(hex16, mList):
 ##############################
 
 # This is where the program actually starts execution
+
+# First read cmd arguments which is actually the name of the hard disk
+check = True
+drive = '\\\\.\PHYSICALDRIVE2'
+if len(sys.argv) > 2 or len(sys.argv) == 1:
+    check = False
+    print("Command should be like this 'python mMBR.py PHYSICALDRIVE2'")
+    sys.exit(0)
+else:
+    drive = r'\\.\\' + str(sys.argv[1]).replace('"','')
+    print(drive)
+
 # Read the Protective MBR hex file
-drive = r'\\.\PHYSICALDRIVE2'
 hexData = ""
 hexData = readDriveSector(drive, 1)
 print('Read File for HEX Data complete')
@@ -148,13 +159,13 @@ print('Read File for HEX Data complete')
 pEntList = []
 
 # Check if whole data is in hex
-check = True
-for item in hexData:
-    if ('0' <= item <= '9') or ('A' <= item <= 'F') or ('a' <= item <= 'f'):
-        check = True
-    else:
-        check = False
-        break
+if check:
+    for item in hexData:
+        if ('0' <= item <= '9') or ('A' <= item <= 'F') or ('a' <= item <= 'f'):
+            check = True
+        else:
+            check = False
+            break
 
 if not check:
     print('Not all values are in hex')
@@ -301,7 +312,7 @@ else:
                 sizeSinglePartEnt = int(sizeSinglePartEnt, 16)
                 # hexData = readDriveSector(drive, int(startLBA, 16) + 1, numPartEnt * sizeSinglePartEnt)
                 hexData = readDriveSector(drive, int(startLBA, 16) + 1, numPartEnt * sizeSinglePartEnt)
-                print(hexData)
+                # print(hexData)
                 startEnt = 0
                 start = 0
                 sizeSinglePartEnt *= 2
@@ -310,8 +321,6 @@ else:
                     if re.fullmatch(r'0*', hexData[start:start + sizeSinglePartEnt]) is None:
                         print('Partition Array Entry ' + str(start // sizeSinglePartEnt) + ':')
                         pae(hexData[start:start + sizeSinglePartEnt])
-                        # else:
-                        # print('Partition Array Entry ' + str(start // sizeSinglePartEnt) + ': All Zero')
                     start += 256
                     startEnt += 1
                     # if crc32Original == '00000100':

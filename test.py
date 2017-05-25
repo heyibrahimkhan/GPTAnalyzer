@@ -1,6 +1,8 @@
 #!/usr/bin/python
 import re
-import mMBR
+# import mMBR
+import sys
+
 # import time, os, sys
 #
 #
@@ -122,15 +124,23 @@ def readSector(drive, sectorNumber):
 # print(str(int('5c', 16)))
 # print(str(re.fullmatch(r'0*', '000')))
 # print(str(int('09', 16)))
-hexData = mMBR.readDriveSector(mMBR.drive, 3)
-with open('msect.txt', 'r') as file:
-    hexData2 = file.read()
-if len(hexData) == len(hexData2):
-    len_h = len(hexData)
-    start = 0
-    while start < len_h:
-        if hexData[start].capitalize() != hexData2[start].capitalize():
-            print(hexData[start] + ' ' + hexData2[start])
-            break
-        start += 1
-else: print('Not Wow')
+# hexData = mMBR.readDriveSector(mMBR.drive, 3)
+# with open('msect.txt', 'r') as file:
+#     hexData2 = file.read()
+# if len(hexData) == len(hexData2):
+#     len_h = len(hexData)
+#     start = 0
+#     while start < len_h:
+#         if hexData[start].capitalize() != hexData2[start].capitalize():
+#             print(hexData[start] + ' ' + hexData2[start])
+#             break
+#         start += 1
+# else: print('Not Wow')
+
+if len(sys.argv) > 2 or len(sys.argv) == 1:
+    check = False
+    print(sys.argv)
+    print("Command should be like this 'python mMBR.py r'\\\\.\PHYSICALDRIVE2'")
+else:
+    print(sys.argv)
+    print('Correct')
