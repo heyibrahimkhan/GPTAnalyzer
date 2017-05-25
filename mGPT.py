@@ -141,7 +141,7 @@ def partitionEntry(hex16, mList):
 
 # First read cmd arguments which is actually the name of the hard disk
 check = True
-drive = '\\\\.\PHYSICALDRIVE2'
+drive = '\\\\.\PHYSICALDRIVE0'
 if len(sys.argv) > 2 or len(sys.argv) == 1:
     check = False
     print("Command should be like this 'python mGPT.py PHYSICALDRIVE2'")
@@ -285,19 +285,14 @@ else:
 
             if check:
                 crc32partEnt = littleEndian(hexData[176:184])
-                # endByt = (int(numPartEnt, 16)) * int(sizeSinglePartEnt, 16)
-                # CRC_32 = readDriveSector(drive, int(startLBA, 16) + 1, 6*128)
-                # print(CRC_32)
-                # start = 0
-                # endByt = len(CRC_32)
-                # CRC_32 = ''
-                # while start <= endByt - 128:
-                #     tempCRC_32 = binascii.crc32(CRC_32[start:start + 128].encode())
-                #     CRC_32 += str(hex(int(tempCRC_32) % (1 << 32)))[2:]
-                #     start += 128
-                # CRC_32 = binascii.crc32((CRC_32).encode())
-                # CRC_32 = str(hex(int(CRC_32) % (1 << 32)))[2:]
-                print(crc32partEnt + ' CRC32 of partition entry in le')
+                tBytes = (int(numPartEnt, 16)) * int(sizeSinglePartEnt, 16)
+                CRC_32 = readDriveSector(drive, int(startLBA, 16) + 1, tBytes)
+                CRC_32 = binascii.crc32(binascii.a2b_hex(CRC_32))
+                CRC_32 = str(hex(int(CRC_32) % (1 << 32)))[2:]
+                if crc32partEnt == CRC_32: print(CRC_32 + ' Calculated CRC32 for Partition Entries Array in le is Valid')
+                else:
+                    print('Original ' + crc32partEnt + ' CRC32 of partition entry in le is invalid with calculated ' + CRC_32)
+                    check = False
 
             if check:
                 if re.match(r'0*', hexData[176:]):
