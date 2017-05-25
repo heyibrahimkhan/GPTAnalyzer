@@ -140,7 +140,7 @@ def readSector(drive, sectorNumber):
 if len(sys.argv) > 2 or len(sys.argv) == 1:
     check = False
     print(sys.argv)
-    print("Command should be like this 'python mMBR.py r'\\\\.\PHYSICALDRIVE2'")
+    print("Command should be like this 'python mGPT.py r'\\\\.\PHYSICALDRIVE2'")
 else:
     print(sys.argv)
     print('Correct')

@@ -144,7 +144,7 @@ check = True
 drive = '\\\\.\PHYSICALDRIVE2'
 if len(sys.argv) > 2 or len(sys.argv) == 1:
     check = False
-    print("Command should be like this 'python mMBR.py PHYSICALDRIVE2'")
+    print("Command should be like this 'python mGPT.py PHYSICALDRIVE2'")
     sys.exit(0)
 else:
     drive = r'\\.\\' + str(sys.argv[1]).replace('"','')
