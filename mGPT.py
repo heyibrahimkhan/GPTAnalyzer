@@ -144,10 +144,16 @@ check = True
 drive = '\\\\.\PHYSICALDRIVE0'
 if len(sys.argv) > 2 or len(sys.argv) == 1:
     check = False
-    print("Command should be like this 'python mGPT.py PHYSICALDRIVE2'")
+    print("Command should be like this in Windows 'python mGPT.py PHYSICALDRIVE2'")
+    print("Command should be like this in Linux 'python mGPT.py /dev/sda'")
     sys.exit(0)
 else:
-    drive = r'\\.\\' + str(sys.argv[1]).replace('"','')
+    if str(sys.argv[1]).__contains__('PHYSICAL') or str(sys.argv[1]).__contains__('DRIVE'):
+        print('Using Windows')
+        drive = r'\\.\\' + str(sys.argv[1]).replace('"','')
+    elif str(sys.argv[1]).__contains__('dev') or str(sys.argv[1]).__contains__('sd'):
+        print('Using Linux')
+        drive = str(sys.argv[1]).replace('"','')
     print(drive)
 
 # Read the Protective MBR hex file
