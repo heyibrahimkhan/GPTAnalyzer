@@ -10,4 +10,4 @@ Windows Users:
 Linux Users:
 1. First, download python3. Install it and setup its path so it can be run from terminal
 2. Open terminal. cd to this scripts directory
-3. Run following command without quotes: 'sudo python mGPT.py /dev/sda'
+3. Run following command without quotes: 'sudo python3 mGPT.py /dev/sda'
