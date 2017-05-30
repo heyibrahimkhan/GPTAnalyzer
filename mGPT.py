@@ -13,6 +13,17 @@ pEntGPT = []
 
 # Required Functions, if any
 
+# translate hex to ascii to display partition name
+def partName(param):
+    name = ''
+    len_p = len(param)
+    if len_p % 2 == 0:
+        start = 0
+        while start < len_p:
+            name += chr(int(param[start:start+2], 16))
+            start += 2
+    return name
+
 # isGPTPartitionEntryValid, Checks if first and last sector numbers don;t overlap with another volume
 def isGPTPEValid(mList, fLBA, lLBA):
     mCheck = True
@@ -40,11 +51,9 @@ def littleEndian(param):
             start -= 2
         idx = 0
         for idx, val in enumerate(temp):
-            if val != '0':
-                break
+            if val != '0': break
         return temp[idx:]
-    else:
-        return None
+    else: return None
 
 
 # Partition Array Entry
@@ -60,7 +69,7 @@ def pae(param, mList):
             print('Last LBA in le: ' + param[80:96] + ' ' + littleEndian(param[80:96]) + ' ' + str(lLBA))
             print('Size in MBs: ' + str(tSize))
             print('Attributes in le: ' + littleEndian(param[96:112]))
-            print('Partition Name: ' + param[112:] + '\n')
+            print('Partition Name: ' + partName(param[112:]) + '\n')
             mList.append({'fLBA': fLBA, 'lLBA': lLBA})
 
 
