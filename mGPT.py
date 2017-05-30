@@ -6,7 +6,7 @@ from colorama import init, Fore, Back, Style  # to help colorizing the output
 #Important variables
 check = True
 drive = '\\\\.\PHYSICALDRIVE0'
-hexData = ""
+hexData = None
 # List containing feature of partition entries
 pEntMBR = []
 pEntGPT = []
@@ -197,6 +197,7 @@ else:
         else: print('Boot Signature is inavlid')
 
     # Since all checks are complete. We can print now
+    sop = 1
     if check:
         print('Bootstrap Code: ')
         print(hexData[:446 * 2])
@@ -302,10 +303,10 @@ else:
                     check = False
 
             if check:
-                if re.match(r'0*', hexData[176:]): print('Valid GPT')
+                if re.match(r'0*', hexData[176:]): print('Valid GPT Header')
                 else:
                     check = False
-                    print('Invalid GPT')
+                    print('Invalid GPT Header')
 
             if check:
                 print('\nRead Partition Entries Array')
