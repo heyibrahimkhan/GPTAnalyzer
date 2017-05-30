@@ -4,6 +4,21 @@ import sys
 
 # Required Functions, if any
 
+# Checks if first and last sector numbers don;t overlap with another volume
+def isValid(mList, fLBA, lLBA):
+    mCheck = True
+    for mItem in mList:
+        if (mItem['fLBA'] <= fLBA <= mItem['lLBA']):
+            mCheck = False
+            print('First LBA of this sector overlaps with another volume. Entry invalid')
+        elif (mItem['fLBA'] <= fLBA <= mItem['lLBA']):
+            mCheck = False
+            print('Last LBA of this sector overlaps with another volume. Entry invalid')
+        if not mCheck:
+            check = False
+            break
+    return mCheck
+
 # Little Endian Function
 def littleEndian(param):
     temp = ''
@@ -23,19 +38,21 @@ def littleEndian(param):
 
 
 # Partition Array Entry
-def pae(param):
+def pae(param, mList):
     if len(param) == sizeSinglePartEnt and re.fullmatch(r'0*', param) is None:
         # print('param = ' + param)
         fLBA = int(littleEndian(param[64:80]), 16)
         lLBA = int(littleEndian(param[80:96]), 16)
         tSize = (((((lLBA - fLBA) + 1) * 512) // 1024) // 1024)
-        print('Partition Type GUID: {' + param[:32] + '}')
-        print('Partition GUID: {' + param[32:64] + '}')
-        print('First LBA in le: ' + param[64:80] + ' ' + littleEndian(param[64:80]) + ' ' + str(fLBA))
-        print('Last LBA in le: ' + param[80:96] + ' ' + littleEndian(param[80:96]) + ' ' + str(lLBA))
-        print('Size in MBs: ' + str(tSize))
-        print('Attributes in le: ' + littleEndian(param[96:112]))
-        print('Partition Name: ' + param[112:] + '\n')
+        if isValid(mList, fLBA, lLBA):
+            print('Partition Type GUID: {' + param[:32] + '}')
+            print('Partition GUID: {' + param[32:64] + '}')
+            print('First LBA in le: ' + param[64:80] + ' ' + littleEndian(param[64:80]) + ' ' + str(fLBA))
+            print('Last LBA in le: ' + param[80:96] + ' ' + littleEndian(param[80:96]) + ' ' + str(lLBA))
+            print('Size in MBs: ' + str(tSize))
+            print('Attributes in le: ' + littleEndian(param[96:112]))
+            print('Partition Name: ' + param[112:] + '\n')
+            mList.append({'fLBA':fLBA, 'lLBA': lLBA})
 
 
 # Read sector number
@@ -311,27 +328,13 @@ else:
                 print('\nRead Partition Entries Array')
                 numPartEnt = int(numPartEnt, 16)
                 sizeSinglePartEnt = int(sizeSinglePartEnt, 16)
-                # hexData = readDriveSector(drive, int(startLBA, 16) + 1, numPartEnt * sizeSinglePartEnt)
                 hexData = readDriveSector(drive, int(startLBA, 16) + 1, numPartEnt * sizeSinglePartEnt)
-                # print(hexData)
-                startEnt = 0
-                start = 0
+                startEnt = start = 0
                 sizeSinglePartEnt *= 2
                 len_h = len(hexData)
                 while startEnt < numPartEnt:
                     if re.fullmatch(r'0*', hexData[start:start + sizeSinglePartEnt]) is None:
                         print('Partition Array Entry ' + str(start // sizeSinglePartEnt) + ':')
-                        pae(hexData[start:start + sizeSinglePartEnt])
+                        pae(hexData[start:start + sizeSinglePartEnt], pEntList)
                     start += 256
                     startEnt += 1
-                    # if crc32Original == '00000100':
-                    #     print('Valid GPT Version')
-                    # else:
-                    #     print('Invalid GPT Version')
-                    #     check = False
-                    # iterations = 0
-                    # while (iterations < 4):
-                    #     print('\nPartition Entry ' + str(iterations) + ':')
-                    #     partitionEntry(hexData[sop:sop + 32], pEntList)
-                    #     sop += 32
-                    #     iterations += 1
