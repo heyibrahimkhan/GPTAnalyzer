@@ -65,9 +65,7 @@ def isPEValid(mList, fLBA, lLBA):
         elif mItem['fLBA'] <= lLBA <= mItem['lLBA']:
             mCheck = False
             print('Last LBA of this sector overlaps with another volume. Entry invalid')
-        if not mCheck:
-            
-            break
+        if not mCheck: break
     # return mCheck
 
 
@@ -95,7 +93,6 @@ def pae(param, mList):
         fLBA = int(littleEndian(param[64:80]), 16)
         lLBA = int(littleEndian(param[80:96]), 16)
         tSize = (((((lLBA - fLBA) + 1) * 512) // 1024) // 1024)
-        # if isPEValid(mList, fLBA, lLBA):
         isPEValid(mList, fLBA, lLBA)
         print('Partition Type GUID: {' + param[:32] + '}')
         print('Partition GUID: {' + param[32:64] + '}')
@@ -198,7 +195,7 @@ def partitionEntry(hex16, mList):
 # First read cmd arguments which is actually the name of the hard disk
 init(convert=True)
 if len(sys.argv) > 2 or len(sys.argv) == 1:
-    
+    check = False
     print("Command should be like this in Windows 'python mGPT.py PHYSICALDRIVE2'")
     print("Command should be like this in Linux 'python mGPT.py /dev/sda'")
     sys.exit(0)
@@ -219,9 +216,7 @@ print('Read File for HEX Data complete')
 if check:
     for item in hexData:
         if ('0' <= item <= '9') or ('A' <= item <= 'F') or ('a' <= item <= 'f'): check = True
-        else:
-            
-            break
+        else: break
 
 if not check: print('Not all values are in hex')
 else:
@@ -262,14 +257,12 @@ else:
         if check:
             signature = hexData[:8 * 2]
             if signature == '4546492050415254': print(str(signature) + ' Signature is Valid')
-            else:
-                print('Signature is invalid')
+            else: print('Signature is invalid')
 
             if check:
                 gptVersion = hexData[16:24]
                 if gptVersion == '00000100': print(str(gptVersion) + ' Valid GPT Version')
-                else:
-                    print('Invalid GPT Version')
+                else: print('Invalid GPT Version')
 
             if check:
                 headerSize = hexData[24:32]
@@ -280,29 +273,23 @@ else:
                 CRC_32 = binascii.crc32(binascii.a2b_hex(CRC_32))
                 CRC_32 = str(hex(int(CRC_32) % (1 << 32)))[2:]
                 if littleEndian(hexData[32:40]) == CRC_32: print(CRC_32 + ' Calculated CRC32 matches original')
-                else:
-                    print("Calculated CRC32 doesn't match original CRC32")
+                else: print("Calculated CRC32 doesn't match original CRC32")
                     
 
             if check:
                 reserved = hexData[40:48]
                 if reserved == '0' * 8: print(reserved + ' Reserved Entry is valid')
-                else:
-                    
-                    print('Reserved Entry is invalid')
+                else: print('Reserved Entry is invalid')
 
             if check:
                 currentLBA = littleEndian(hexData[48:64])
                 if currentLBA == '1': print(currentLBA + ' Current LBA location is valid in le')
-                else:
-                    
-                    print(currentLBA + ' Current LBA location is invalid')
+                else: print(currentLBA + ' Current LBA location is invalid')
 
             if check:
                 backupLBA = littleEndian(hexData[64:80])
                 if backupLBA != currentLBA: print(backupLBA + ' Backup LBA location in le')
-                else:
-                    print("Backup LBA" + backupLBA + " and Current LBA " + currentLBA + " are same, which isn't possible. LBA invalid")
+                else: print("Backup LBA" + backupLBA + " and Current LBA " + currentLBA + " are same, which isn't possible. LBA invalid")
                     
 
             if check:
@@ -320,9 +307,7 @@ else:
             if check:
                 startLBA = littleEndian(hexData[144:160])
                 if startLBA == '2': print(startLBA + ' Starting LBA of array of partition entries in le')
-                else:
-                    
-                    print(startLBA + ' Starting LBA for array of partition entries is invalid')
+                else: print(startLBA + ' Starting LBA for array of partition entries is invalid')
 
             if check:
                 numPartEnt = littleEndian(hexData[160:168])
@@ -339,15 +324,12 @@ else:
                 CRC_32 = binascii.crc32(binascii.a2b_hex(CRC_32))
                 CRC_32 = str(hex(int(CRC_32) % (1 << 32)))[2:]
                 if crc32partEnt == CRC_32: print(CRC_32 + ' Calculated CRC32 for Partition Entries Array in le is Valid')
-                else:
-                    print('Original ' + crc32partEnt + ' CRC32 of partition entry in le is invalid with calculated ' + CRC_32)
+                else: print('Original ' + crc32partEnt + ' CRC32 of partition entry in le is invalid with calculated ' + CRC_32)
                     
 
             if check:
                 if re.match(r'0*', hexData[176:]): print('Valid GPT Header')
-                else:
-                    
-                    print('Invalid GPT Header')
+                else: print('Invalid GPT Header')
 
             if check:
                 print('\nRead Partition Entries Array')

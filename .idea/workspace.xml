@@ -37,8 +37,8 @@
       <file leaf-file-name="mGPT.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mGPT.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="129" column="26" lean-forward="true" selection-start-line="129" selection-start-column="26" selection-end-line="129" selection-end-column="26" />
+            <state relative-caret-position="140">
+              <caret line="220" column="48" lean-forward="true" selection-start-line="220" selection-start-column="48" selection-end-line="220" selection-end-column="48" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -90,8 +90,8 @@
         <option value="$PROJECT_DIR$/mMain.py" />
         <option value="$PROJECT_DIR$/mMBR.py" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/mGPT.py" />
         <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/mGPT.py" />
       </list>
     </option>
   </component>
@@ -529,7 +529,14 @@
       <option name="project" value="LOCAL" />
       <updated>1496184799106</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="check = False has been removed. Code improved more">
+      <created>1496188195775</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1496188195775</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -618,7 +625,8 @@
     <MESSAGE value="partition Name function added" />
     <MESSAGE value="Partition Attribute Function added" />
     <MESSAGE value="State before check = False was removed from script" />
-    <option name="LAST_COMMIT_MESSAGE" value="State before check = False was removed from script" />
+    <MESSAGE value="check = False has been removed. Code improved more" />
+    <option name="LAST_COMMIT_MESSAGE" value="check = False has been removed. Code improved more" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1091,8 +1099,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mGPT.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="129" column="26" lean-forward="true" selection-start-line="129" selection-start-column="26" selection-end-line="129" selection-end-column="26" />
+        <state relative-caret-position="140">
+          <caret line="220" column="48" lean-forward="true" selection-start-line="220" selection-start-column="48" selection-end-line="220" selection-end-column="48" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
