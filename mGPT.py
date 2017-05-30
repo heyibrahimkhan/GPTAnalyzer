@@ -13,6 +13,31 @@ pEntGPT = []
 
 # Required Functions, if any
 
+def hexToBin(string, hexLength=2, maxBits=None):
+    mBin = str(bin(int(string[0:hexLength], 16)))[2:]
+    if maxBits is not None:
+        while len(mBin) < maxBits: mBin += '0'
+    return mBin
+
+# Interpret partition Attributes
+def partAttrib(attrib_hex, partitionName):
+    while len(attrib_hex) < 16: attrib_hex += '0'
+    attrib_bin = ''
+    start = 0
+    len_h = len(attrib_hex)
+    while start < len_h:
+        attrib_bin += hexToBin(attrib_hex[start:start+2], maxBits=8)
+        start += 2
+    attrib_bin = attrib_bin[::-1]
+    print('Platform Reuired = ' + str(attrib_bin[0] == 1))
+    print('EFI firmware should ignore the content of the partition and not try to read from it = ' + str(attrib_bin[1] == 1))
+    print('Legacy BIOS Bootable = ' + str(attrib_bin[2] == 1))
+    if partitionName.capitalize() == 'BASIC DATA PARTITION':
+        print('Read Only = ' + str(attrib_bin[60] == 1))
+        print('Shadow copy (of another partition) = ' + str(attrib_bin[61] == 1))
+        print('Hidden = ' + str(attrib_bin[62] == 1))
+        print('No drive letter (i.e. do not automount) = ' + str(attrib_bin[63] == 1))
+
 # translate hex to ascii to display partition name
 def partName(param):
     name = ''
@@ -20,12 +45,15 @@ def partName(param):
     if len_p % 2 == 0:
         start = 0
         while start < len_p:
+            if param[start:start + 2] == '00':
+                start += 2
+                continue
             name += chr(int(param[start:start+2], 16))
             start += 2
     return name
 
 # isGPTPartitionEntryValid, Checks if first and last sector numbers don;t overlap with another volume
-def isGPTPEValid(mList, fLBA, lLBA):
+def isPEValid(mList, fLBA, lLBA):
     mCheck = True
     for mItem in mList:
         if mItem['fLBA'] <= fLBA <= mItem['lLBA']:
@@ -62,14 +90,16 @@ def pae(param, mList):
         fLBA = int(littleEndian(param[64:80]), 16)
         lLBA = int(littleEndian(param[80:96]), 16)
         tSize = (((((lLBA - fLBA) + 1) * 512) // 1024) // 1024)
-        if isGPTPEValid(mList, fLBA, lLBA):
+        if isPEValid(mList, fLBA, lLBA):
             print('Partition Type GUID: {' + param[:32] + '}')
             print('Partition GUID: {' + param[32:64] + '}')
             print('First LBA in le: ' + param[64:80] + ' ' + littleEndian(param[64:80]) + ' ' + str(fLBA))
             print('Last LBA in le: ' + param[80:96] + ' ' + littleEndian(param[80:96]) + ' ' + str(lLBA))
             print('Size in MBs: ' + str(tSize))
+            pn = partName(param[112:])
             print('Attributes in le: ' + littleEndian(param[96:112]))
-            print('Partition Name: ' + partName(param[112:]) + '\n')
+            partAttrib(littleEndian(param[96:112]), pn)
+            print('Partition Name: ' + pn + '\n')
             mList.append({'fLBA': fLBA, 'lLBA': lLBA})
 
 
