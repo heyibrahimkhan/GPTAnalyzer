@@ -13,6 +13,7 @@ pEntGPT = []
 
 # Required Functions, if any
 
+# converts hex string of length hexLength to binary string of maxlength or arbitrary length
 def hexToBin(string, hexLength=2, maxBits=None):
     mBin = str(bin(int(string[0:hexLength], 16)))[2:]
     if maxBits is not None:
@@ -226,7 +227,7 @@ else:
 
     # Check length of file
     if len(hexData) != 1024:
-        print('File length is invalid')
+        print('Length of hexData is invalid')
         check = False
 
     # Check if last two hex values are 55 AA

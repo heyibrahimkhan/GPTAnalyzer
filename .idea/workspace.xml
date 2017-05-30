@@ -37,8 +37,8 @@
       <file leaf-file-name="mGPT.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mGPT.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="362" column="33" lean-forward="true" selection-start-line="362" selection-start-column="33" selection-end-line="362" selection-end-column="33" />
+            <state relative-caret-position="530">
+              <caret line="283" column="33" lean-forward="true" selection-start-line="283" selection-start-column="33" selection-end-line="283" selection-end-column="33" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -514,7 +514,14 @@
       <option name="project" value="LOCAL" />
       <updated>1496180026020</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Partition Attribute Function added">
+      <created>1496184568739</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1496184568739</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -601,7 +608,8 @@
     <MESSAGE value="Color module included but not used. &#10;Fix in isGPTPartitionEntryValid.&#10;Code size reduced" />
     <MESSAGE value="Nothing much" />
     <MESSAGE value="partition Name function added" />
-    <option name="LAST_COMMIT_MESSAGE" value="partition Name function added" />
+    <MESSAGE value="Partition Attribute Function added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Partition Attribute Function added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1074,8 +1082,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mGPT.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="362" column="33" lean-forward="true" selection-start-line="362" selection-start-column="33" selection-end-line="362" selection-end-column="33" />
+        <state relative-caret-position="530">
+          <caret line="283" column="33" lean-forward="true" selection-start-line="283" selection-start-column="33" selection-end-line="283" selection-end-column="33" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
