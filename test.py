@@ -2,6 +2,7 @@
 import re
 # import mMBR
 import sys
+from colorama import init, Fore, Back, Style
 
 # import time, os, sys
 #
@@ -137,10 +138,24 @@ def readSector(drive, sectorNumber):
 #         start += 1
 # else: print('Not Wow')
 
-if len(sys.argv) > 2 or len(sys.argv) == 1:
-    check = False
-    print(sys.argv)
-    print("Command should be like this 'python mGPT.py r'\\\\.\PHYSICALDRIVE2'")
-else:
-    print(sys.argv)
-    print('Correct')
+# if len(sys.argv) > 2 or len(sys.argv) == 1:
+#     check = False
+#     print(sys.argv)
+#     print("Command should be like this 'python mGPT.py r'\\\\.\PHYSICALDRIVE2'")
+# else:
+#     print(sys.argv)
+#     print('Correct')
+
+# class bcolors:
+#     HEADER = '\033[95m'
+#     OKBLUE = '\033[94m'
+#     OKGREEN = '\033[92m'
+#     WARNING = '\033[93m'
+#     FAIL = '\033[91m'
+#     ENDC = '\033[0m'
+#     BOLD = '\033[1m'
+#     UNDERLINE = '\033[4m'
+
+# print(bcolors.WARNING + 'Waarni')
+init(convert=True)
+print(Fore.RED + 'some red text')
