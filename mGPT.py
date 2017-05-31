@@ -22,7 +22,6 @@ def hexToBin(string, hexLength=2, maxBits=None):
 
 # Interpret partition Attributes
 def partAttrib(attrib_hex, partitionName):
-
     while len(attrib_hex) < 16: attrib_hex = '0' + attrib_hex
     attrib_bin = ''
     start = 0
@@ -94,7 +93,7 @@ def pae(param, mList):
         lLBA = int(littleEndian(param[80:96]), 16)
         tSize = (((((lLBA - fLBA) + 1) * 512) // 1024) // 1024)
         isPEValid(mList, fLBA, lLBA)
-        print('Partition Type GUID: {' + param[:32] + '}')
+        print('Partition Type GUID in le: {' + littleEndian(param[:8]) + '-' + littleEndian(param[8:12]) + '-' + littleEndian(param[12:16]) + '-' + littleEndian(param[16:20]) + '-' + littleEndian(param[20:32]) + '}')
         print('Partition GUID: {' + param[32:64] + '}')
         print('First LBA in le: ' + param[64:80] + ' ' + littleEndian(param[64:80]) + ' ' + str(fLBA))
         print('Last LBA in le: ' + param[80:96] + ' ' + littleEndian(param[80:96]) + ' ' + str(lLBA))

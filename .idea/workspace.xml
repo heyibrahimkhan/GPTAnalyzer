@@ -38,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/mGPT.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="140">
-              <caret line="220" column="48" lean-forward="true" selection-start-line="220" selection-start-column="48" selection-end-line="220" selection-end-column="48" />
+              <caret line="94" column="36" lean-forward="true" selection-start-line="94" selection-start-column="36" selection-end-line="94" selection-end-column="36" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -536,7 +536,14 @@
       <option name="project" value="LOCAL" />
       <updated>1496188195775</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Nothing much">
+      <created>1496188541811</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1496188541811</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -621,12 +628,12 @@
     <MESSAGE value="README.md updated" />
     <MESSAGE value="Not sure. Committing hence" />
     <MESSAGE value="Color module included but not used. &#10;Fix in isGPTPartitionEntryValid.&#10;Code size reduced" />
-    <MESSAGE value="Nothing much" />
     <MESSAGE value="partition Name function added" />
     <MESSAGE value="Partition Attribute Function added" />
     <MESSAGE value="State before check = False was removed from script" />
     <MESSAGE value="check = False has been removed. Code improved more" />
-    <option name="LAST_COMMIT_MESSAGE" value="check = False has been removed. Code improved more" />
+    <MESSAGE value="Nothing much" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nothing much" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1100,7 +1107,7 @@
     <entry file="file://$PROJECT_DIR$/mGPT.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
-          <caret line="220" column="48" lean-forward="true" selection-start-line="220" selection-start-column="48" selection-end-line="220" selection-end-column="48" />
+          <caret line="94" column="36" lean-forward="true" selection-start-line="94" selection-start-column="36" selection-end-line="94" selection-end-column="36" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
