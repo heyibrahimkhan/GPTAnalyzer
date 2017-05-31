@@ -30,7 +30,7 @@ def partAttrib(attrib_hex, partitionName):
         attrib_bin += hexToBin(attrib_hex[start:start+2], maxBits=8)
         start += 2
     # attrib_bin = attrib_bin[::-1]
-    print('Attrib Bin = ' + attrib_bin)
+    # print('Attrib Bin = ' + attrib_bin)
     print('Platform Reuired = ' + str(attrib_bin[0] == '1'))
     print('EFI firmware should ignore the content of the partition and not try to read from it = ' + str(attrib_bin[1] == 1))
     print('Legacy BIOS Bootable = ' + str(attrib_bin[2] == '1'))
