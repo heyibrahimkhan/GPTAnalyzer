@@ -24,11 +24,11 @@ def hexToBin(string, hexLength=2, maxBits=None):
 def partAttrib(attrib_hex, partitionName):
     while len(attrib_hex) < 16: attrib_hex = '0' + attrib_hex
     attrib_bin = ''
-    start = 0
-    len_h = len(attrib_hex)
-    while start < len_h:
-        attrib_bin += hexToBin(attrib_hex[start:start+2], maxBits=8)
-        start += 2
+    startIdx = 0
+    len_ah = len(attrib_hex)
+    while startIdx < len_ah:
+        attrib_bin += hexToBin(attrib_hex[startIdx:startIdx+2], maxBits=8)
+        startIdx += 2
     # attrib_bin = attrib_bin[::-1]
     # print('Attrib Bin = ' + attrib_bin)
     print('Platform Reuired = ' + str(attrib_bin[0] == '1'))
@@ -45,13 +45,13 @@ def partName(param):
     name = ''
     len_p = len(param)
     if len_p % 2 == 0:
-        start = 0
-        while start < len_p:
-            if param[start:start + 2] == '00':
-                start += 2
+        startIdx = 0
+        while startIdx < len_p:
+            if param[startIdx:startIdx + 2] == '00':
+                startIdx += 2
                 continue
-            name += chr(int(param[start:start+2], 16))
-            start += 2
+            name += chr(int(param[startIdx:startIdx+2], 16))
+            startIdx += 2
     return name
 
 # isGPTPartitionEntryValid, Checks if first and last sector numbers don;t overlap with another volume
@@ -74,10 +74,10 @@ def littleEndian(param):
     temp2 = ''
     len_p = len(param)
     if len_p % 2 == 0:
-        start = len_p - 1
-        while start > 0:
-            temp = temp + param[start - 1] + param[start]
-            start -= 2
+        startIdx = len_p - 1
+        while startIdx > 0:
+            temp = temp + param[startIdx - 1] + param[startIdx]
+            startIdx -= 2
         idx = 0
         for idx, val in enumerate(temp):
             if val != '0': break
@@ -178,7 +178,7 @@ def partitionEntry(hex16, mList):
         chs1 = chs(hex16[2:8])
         chsLast = chs(hex16[10:16])
         lbaStart = lba(hex16[16:24])
-        sectorsTotal = lba(hex16[24:])
+        sectorsTotal = lba(hex16[24:]) + 1
         print('1st CHS: ' + str(chs1))
         print('Partition Type: ' + partitionType(hex16[8:10]))
         print('Last CHS: ' + str(chsLast))
@@ -195,11 +195,12 @@ def partitionEntry(hex16, mList):
 init(convert=True)
 if len(sys.argv) > 2 or len(sys.argv) == 1:
     check = False
-    print("Command should be like this in Windows 'python mGPT.py PHYSICALDRIVE2'")
+    print("Command should be like this in Windows 'python mGPT.py PHYSICALDRIVEn' where n is the number of physical drives attached to a Windows based system. n >= 0")
     print("Command should be like this in Linux 'python mGPT.py /dev/sda'")
     sys.exit(0)
 else:
     if str(sys.argv[1]).__contains__('PHYSICAL') or str(sys.argv[1]).__contains__('DRIVE'):
+        if str(sys.argv[1]).__contains__('PHYSICALDRIVEn'): sys.argv[1] = 'PHYSICALDRIVE0'
         print('Using Windows')
         drive = r'\\.\\' + str(sys.argv[1]).replace('"', '')
     elif str(sys.argv[1]).__contains__('dev') or str(sys.argv[1]).__contains__('sd'):
@@ -223,15 +224,10 @@ else:
     check = True
 
     # Check length of file
-    if len(hexData) != 1024:
-        print('Length of hexData is invalid')
-        
+    if len(hexData) != 1024: print('Length of hexData is invalid')
 
     # Check if last two hex values are 55 AA
-    if check:
-        check = (hexData[510 * 2:] == '55AA' or hexData[510 * 2:] == '55aa')
-        if check: print('Boot Signature is Valid')
-        else: print('Boot Signature is inavlid')
+    if check: print('Boot Signature is' + str(hexData[510 * 2:] == '55AA' or hexData[510 * 2:] == '55aa'))
 
     # Since all checks are complete. We can print now
     sop = 1
@@ -273,7 +269,6 @@ else:
                 CRC_32 = str(hex(int(CRC_32) % (1 << 32)))[2:]
                 if littleEndian(hexData[32:40]) == CRC_32: print(CRC_32 + ' Calculated CRC32 matches original')
                 else: print("Calculated CRC32 doesn't match original CRC32")
-                    
 
             if check:
                 reserved = hexData[40:48]
@@ -289,7 +284,6 @@ else:
                 backupLBA = littleEndian(hexData[64:80])
                 if backupLBA != currentLBA: print(backupLBA + ' Backup LBA location in le')
                 else: print("Backup LBA" + backupLBA + " and Current LBA " + currentLBA + " are same, which isn't possible. LBA invalid")
-                    
 
             if check:
                 firstUsableLBA = littleEndian(hexData[80:96])
@@ -324,7 +318,6 @@ else:
                 CRC_32 = str(hex(int(CRC_32) % (1 << 32)))[2:]
                 if crc32partEnt == CRC_32: print(CRC_32 + ' Calculated CRC32 for Partition Entries Array in le is Valid')
                 else: print('Original ' + crc32partEnt + ' CRC32 of partition entry in le is invalid with calculated ' + CRC_32)
-                    
 
             if check:
                 if re.match(r'0*', hexData[176:]): print('Valid GPT Header')
